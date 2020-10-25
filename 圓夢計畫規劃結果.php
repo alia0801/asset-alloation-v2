@@ -186,19 +186,19 @@ $in_money1 = implode(",",$in_money);
 $total_money = array(0=>0);
 for ( $i=1 ; $i<$years ; $i++ ){
   if($i==1){
-    $total_money[$i] = $total_money[$i-1]*(((double)$reward+1)/100+1) + $first_input*10000;
+    $total_money[$i] = $total_money[$i-1]*(((double)$reward)/100+1) + $first_input*10000;
     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
     $total_money[$i] = round($total_money[$i]);
   }
   else{
-    $total_money[$i] = $total_money[$i-1]*(((double)$reward+1)/100+1) + $y_in_money;
+    $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $y_in_money;
     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
     $total_money[$i] = round($total_money[$i]);
   }
     
 }
-// $total_money[count($total_money)-2] = $total_money[count($total_money)-2] + 103722;
-// $total_money[count($total_money)-1] = $need_pension + 68722;
+$total_money[count($total_money)-2] = $total_money[count($total_money)-2] + 103722;
+$total_money[count($total_money)-1] = $need_pension + 68722;
 $total_money1 = implode(",",$total_money);
 
 

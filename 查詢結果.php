@@ -84,18 +84,6 @@ if(file_exists('error10.txt')){
 $sqlyourname1 = $_POST["yourname"];
 $sqlpassword1 = $_POST["password"];
 
-// $_SESSION["age"] = $_POST["age"];
-// $_SESSION["retireAge"] = $_POST["retireAge"];
-// $_SESSION["expectAge"] = $_POST["expectAge"];
-// $_SESSION["expenses"] = $_POST["expenses"];
-// $_SESSION["risk"] = $_POST["risk"];
-// $_SESSION["in_per_year"] = $_POST["in_per_year"];
-// $_SESSION["want_calc"] = $_POST["want_calc"];
-// $_SESSION["want_see"] = $_POST["want_see"];//ymdnum
-// $_SESSION["ymd"] = $_POST["ymd"];
-// $_SESSION["period"] = $_POST["period"];
-// $_SESSION["totalAmt"] = $_POST["totalAmt"];
-
         $servername = "localhost";
         $username = "root";
         $password = "esfortest";
@@ -111,11 +99,7 @@ $sqlpassword1 = $_POST["password"];
 
         mysqli_query($conn,"SET NAMES 'utf8'");
         $sql = "SELECT * FROM $usertable where name = '".$sqlyourname1 ."'";
-        // $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-        // $sql = "SELECT * FROM $usertable where (name = $yourname and id = $password )";
-        // $sql = "SELECT * FROM $usertable where (name = 'max')";
-
-        // echo $sql;
+        
         $result = mysqli_query($conn,$sql);
         $row = mysqli_fetch_array($result);
         $var=explode(" ",$row[4]);//選股結果
@@ -209,56 +193,6 @@ for ($i=0;$i<count($weight)-1;$i++){
 }
 $weight[count($weight)-1]=$ccc;
 
-
-// $count_percent_stock = 0;
-// $stock = array(0=>0);
-// $stock_name = array(0=>0);
-// $count_stock = 0;
-// $stock_percent = array(0=>0);
-// for ( $i=0 ; $i<$n ; $i++ ){
-//     // $sql = "select * from `性質表` where name = '"+$var[$i] +"'";
-//     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-//     // echo $sql;
-//     $result = mysqli_query($conn,$sql);
-//     $row = mysqli_fetch_array($result);
-//     if($row[3]=='股票型'){
-//         // $weight[$i] = round($weight[$i],5);
-//         $wght = $weight[$i]*100;
-//         $count_percent_stock += $wght;
-//         $stock[$count_stock] = $row[0];
-//         $stock_percent[$count_stock] = $wght;
-//         $stock_name[$count_stock++] = $row[1];
-//         //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
-//     }
-
-// }
-
-
-// $count_percent_bond = 0;
-// $bond = array(0=>0);
-// $bond_name = array(0=>0);
-// $count_bond = 0;
-// $bond_percent = array(0=>0);
-// for ( $i=0 ; $i<$n ; $i++ ){
-//     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-//     // echo $sql;
-//     $result = mysqli_query($conn,$sql);
-//     $row = mysqli_fetch_array($result);
-//     //if($row[3]=='債券型'){
-//     if(preg_match("/債券/",$row[3] )){
-//         // $weight[$i] = round($weight[$i],5);
-//         $wght = $weight[$i]*100;
-//         //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
-//         $count_percent_bond += $wght;
-//         $bond[$count_bond] = $row[0];
-//         $bond_percent[$count_bond] = $wght;
-//         $bond_name[$count_bond++] = $row[1];
-        
-//     }
-    
-// }
-
-
 $count_percent_stockstock = 0;
 $stockstock = array(0=>0);
 $stockstock_name = array(0=>0);
@@ -266,20 +200,17 @@ $count_stockstock = 0;
 $stockstock_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
-    // $sql = "select * from 性質表 where name = '"+$var[$i] +"'";
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
     // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     if($row[14]=='STOCK'){
     // if(preg_match("/股/",$row[3] ) and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
         $count_percent_stockstock += $wght;
         $stockstock[$count_stockstock] = $row[0];
         $stockstock_percent[$count_stockstock] = $wght;
         $stockstock_name[$count_stockstock++] = $row[1];
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
     }
 
 }
@@ -291,20 +222,17 @@ $count_stock = 0;
 $stock_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
-    // $sql = "select * from 性質表 where name = '"+$var[$i] +"'";
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
     // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     // if($row[3]=='股票型'){
     if(preg_match("/股/",$row[3] ) and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
         $count_percent_stock += $wght;
         $stock[$count_stock] = $row[0];
         $stock_percent[$count_stock] = $wght;
         $stock_name[$count_stock++] = $row[1];
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
     }
 
 }
@@ -323,9 +251,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
     $row = mysqli_fetch_array($result);
     //if($row[3]=='債券型'){
     if(preg_match("/債/",$row[3] )and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
         $count_percent_bond += $wght;
         $bond[$count_bond] = $row[0];
         $bond_percent[$count_bond] = $wght;
@@ -343,14 +269,11 @@ $other_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-    // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     //if($row[3]=='債券型'){
     if(!(preg_match("/債/",$row[3] )) and !(preg_match("/股/",$row[3] )) and ($row[14]=='ETF')){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
         $count_percent_other += $wght;
         $other[$count_other] = $row[0];
         $other_percent[$count_other] = $wght;
@@ -545,19 +468,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
                             <div class="col-lg-3">
                                 <div class="card text-center" height="100%">
                                     
-                                    <!-- <div class="m-t-10">
-                                        <p>Customer Feedback</p>
-                                        <h5>385749</h5>
-                                    </div> -->
-                                    <!-- <div class="widget-card-circle pr m-t-20 m-b-20" id="info-circle-card"> -->
-                                      
-                                        <!-- <div id="pieChartdiv" style="width: 100%; height: 395px">
-                                            <div class="chartjs-wrapper"><canvas id="chartjs-4" class="chartjs" width="100%" height="130px"></canvas>
-                                            <script>new Chart(document.getElementById("chartjs-4"),
-                                            {"type":"doughnut","data":{"labels":["股票型","債券型"],
-                                            "datasets":[{"label":"My First Dataset","data":[<?php print_r($count_percent_stock);?>,<?php print_r($count_percent_bond);?>],
-                                            "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)"]}]}});</script></div>
-                                        </div> -->
+                                    
                                         <div id="pieChartdiv" style="width: 100%; height: 395px">
                                             <div class="chartjs-wrapper"><canvas id="chartjs-4" class="chartjs" width="100%" height="130px"></canvas>
                                             <script>new Chart(document.getElementById("chartjs-4"),
@@ -567,13 +478,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                         </div>
                                         <!-- <i class="ti-control-shuffle pa"></i> -->
                                     <!-- </div> -->
-                                    <!-- <div>
-                                    <ul class="widget-line-list m-b-15">
-                                        <li class="border-right">年化報酬率 <br><span > <?php print_r($reward);?></span></li>
-                                        <li>年化標準差 <br><span ><?php print_r($std_dev*100);?>%</span></span></li>
-                                        
-                                    </ul>
-                                    </div> -->
+                                    
 
                                     <br>
                                     <p class="lead">年化報酬率<?php print_r($reward);?></p>
@@ -582,19 +487,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                     <br>
                                     
                                 </div>
-                                <!-- <div class="card nestable-cart">
-                                    <div class="card-title">
-                                        <h4>USA</h4>
-                                        <div class="card-title-right-icon">
-                                            <ul>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="Vector-map-js">
-                                        <div id="vmap13" class="vmap"></div>
-                                    </div>
-                                </div> -->
+                               
                                 <!-- /# card -->
                             </div>
                             <!-- /# column -->
@@ -606,32 +499,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                     <p> </p>
                                     <div class="card-body">
                                         <div class="table-responsive">
-                                        <!-- <h4>股票  <?php print_r($count_percent_stockstock); ?> %</h4>
-                                            <table class="table">
-                                                <thead>
-                                                    <tr>
-                                                        <th colspan="2">ETF</th>
-                                                        <th>比例</th>
-                                                        
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <?php
-                                                            $count_percent = 0;
-                                                            for ( $i=0 ; $i<$count_stockstock ; $i++ ){
-                                                                // echo ("$stock[$i] \t\t $stock_name[$i] <div style='float:right;'> $stock_percent[$i] %</div><br>");
-                                                                echo("<tr> <td>$stockstock[$i]</td> <td> $stockstock_name[$i]</td> <td>$stockstock_percent[$i]%</td> </tr>");
-                                                            }
-                                                        ?>
-                                                        <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
-                                                    </tr>
-                                                    
-                                                </tbody>
-                                            </table>
+                                        
                                             <h4>ETF股票型  <?php print_r($count_percent_stock); ?> %</h4>
                                             <table class="table">
                                                 <thead>
@@ -650,10 +518,6 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                                                 echo("<tr> <td>$stock[$i]</td> <td> $stock_name[$i]</td> <td>$stock_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
                                                     </tr>
                                                     
                                                 </tbody>
@@ -676,10 +540,6 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                                                 echo("<tr> <td>$bond[$i]</td> <td> $bond_name[$i]</td> <td>$bond_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
                                                     </tr>
                                                     
                                                 </tbody>
@@ -702,10 +562,6 @@ for ( $i=0 ; $i<$n ; $i++ ){
                                                                 echo("<tr> <td>$other[$i]</td> <td> $other_name[$i]</td> <td>$other_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
                                                     </tr>
                                                     
                                                 </tbody>

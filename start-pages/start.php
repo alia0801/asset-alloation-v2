@@ -93,19 +93,19 @@
   <script type="text/javascript">
     function check()
     {
-        document.info.action="http://localhost/asset-allocation-pages/%E6%9F%A5%E8%A9%A2%E7%B5%90%E6%9E%9C.php";
+        document.info.action="http://localhost/mypage/asset-allocation-pages/%E6%9F%A5%E8%A9%A2%E7%B5%90%E6%9E%9C.php";
         document.info.submit();
     }
 
     function sign()
     {
-        document.info.action="http://localhost/asset-allocation-pages/%E8%B3%87%E7%94%A2%E9%85%8D%E7%BD%AE%E8%A1%A8%E5%96%AE%E9%A0%81%E9%9D%A2.php";
+        document.info.action="http://localhost/mypage/asset-allocation-pages/%E8%B3%87%E7%94%A2%E9%85%8D%E7%BD%AE%E8%A1%A8%E5%96%AE%E9%A0%81%E9%9D%A2.php";
         document.info.submit();
     }
 
     function trytry()
     {
-        document.info.action="http://localhost/asset-allocation-pages/%E6%A8%A1%E6%93%AC%E6%8A%95%E8%B3%87%E8%A1%A8%E5%96%AE%E9%A0%81%E9%9D%A2.php";
+        document.info.action="http://localhost/mypage/asset-allocation-pages/%E6%A8%A1%E6%93%AC%E6%8A%95%E8%B3%87%E8%A1%A8%E5%96%AE%E9%A0%81%E9%9D%A2.php";
         document.info.submit();
     }
   </script>

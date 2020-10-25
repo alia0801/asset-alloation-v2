@@ -52,19 +52,6 @@ if(file_exists('error5.txt')){
         <link rel="apple-touch-icon" sizes="72x72" href="http://placehold.it/72.png/000/fff">
         <!-- Standard iPhone Touch Icon-->
         <link rel="apple-touch-icon" sizes="57x57" href="http://placehold.it/57.png/000/fff">
-
-        <!-- <link href="assets/css/lib/helper.css" rel="stylesheet"> -->
-        <!-- <link href="assets/css/style.css" rel="stylesheet"> -->
-    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="description" content="">
-    <meta name="generator" content="GitBook 3.2.2">
-    <meta name="author" content="chartjs">
-    <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-    <link rel="stylesheet" href="https://www.chartjs.org/docs/latest/gitbook/style.css">             
-    <link rel="stylesheet" href="https://www.chartjs.org/docs/latest/gitbook/gitbook-plugin-search-plus/search.css">        
-    <link rel="stylesheet" href="https://www.chartjs.org/docs/latest/gitbook/gitbook-plugin-highlight/website.css">           
-    <link rel="stylesheet" href="https://www.chartjs.org/docs/latest/gitbook/gitbook-plugin-fontsettings/website.css">        
-    <link rel="stylesheet" href="https://www.chartjs.org/docs/latest/style.css"> -->
       
     <meta name="HandheldFriendly" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -94,8 +81,6 @@ $_SESSION["in_per_year"] = $_POST["in_per_year"];
 $_SESSION["want_calc"] = $_POST["want_calc"];
 $_SESSION["want_see"] = $_POST["want_see"];//ymdnum
 $_SESSION["ymd"] = $_POST["ymd"];
-// $_SESSION["period"] = $_POST["period"];
-// $_SESSION["totalAmt"] = $_POST["totalAmt"];
 
         $servername = "localhost";
         $username = "root";
@@ -120,7 +105,7 @@ $_SESSION["ymd"] = $_POST["ymd"];
         $h = $_POST["want_see"];
         $sqlyourname = $_POST["yourname"];
         $sqlpassword = $_POST["password"];
-        // $sql = "INSERT INTO user_data (`age`, `retireAge`, `expectAge`, `expenses`, `want_calc`, `want_see`,`name`,`id`) VALUES ($a,$b,$c,$d,$g,$h,$sqlyourname,$sqlpassword)";
+        
         $sql = "INSERT INTO user_data (name,id,age,retireAge,expectAge,expenses,want_calc,want_see)VALUES ('$sqlyourname','$sqlpassword','$a','$b','$c','$d','$g','$h' )";
         $sqlr = "INSERT INTO user_datar (name,id,age,retireAge,expectAge,expenses,want_calc,want_see)VALUES ('$sqlyourname','$sqlpassword','$a','$b','$c','$d','$g','$h' )";
 
@@ -140,7 +125,6 @@ $yyyy = $years-1;
 
 //需要的退休金金額
  $need_pension = $_POST["expenses"] * ($_SESSION["expectAge"] - $_SESSION["retireAge"]) * 12 * 10000 * pow(1+1.72/100,$years-1);//需要準備的退休金
-//$need_pension = $_POST["expenses"] * ($_SESSION["expectAge"] - $_SESSION["retireAge"]) * 12 * 10000 ;//需要準備的退休金
 $need_pension = ceil($need_pension);
 
 $first_input = $_SESSION["risk"];
@@ -150,17 +134,9 @@ unset($out);
 $var = 6;
 $var1 = 12;
 $mode = 3;
-
-
-
 //選股 C:/Users/User/Anaconda3/python.exe
-// exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe testsig1.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
-// exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode}",$out,$ret);
-exec("C:/Python38-32/python.exe functions/choose.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
-// exec("C:/Users/User/Anaconda3/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
-
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/choose.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
 $var=explode(" ",$out[0]);//選股結果
-// $var = $out[0];//選股結果
 $n = count($var);//選出幾個
 
 //各股比例
@@ -202,16 +178,13 @@ $in_money1 = implode(",",$in_money);
 
 //資產總額陣列
 $total_money = array(0=>0);
-//$total_money[1] = $in_money[1];
 for ( $i=1 ; $i<$years ; $i++ ){
   if($i==1){
-    // $total_money[$i] = (pow((double)$reward/100+1,$i)-1) * $y_in_money / ((double)$reward/100);
     $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $first_input*10000;
     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
     $total_money[$i] = round($total_money[$i]);
   }
   else{
-    // $total_money[$i] = (pow((double)$reward/100+1,$i)-1) * $y_in_money / ((double)$reward/100);
     $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $y_in_money;
     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
     $total_money[$i] = round($total_money[$i]);
@@ -248,22 +221,14 @@ $total_money1 = implode(",",$total_money);
   $o0 = implode(",",$var);
   $o1 = implode(",",$weight);
   unset($out);
-  // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe historical_2.py 2>error2.txt {$o0} {$o1} {$his_m} {$y_in_money}",$out,$ret);
-  // {$o0} {$o1} {$his_m} {$y_in_money} {$best_v3_day} {$best_v3_month} {$best_v3_year}"
-  exec("C:/Python38-32/python.exe functions/historical_m_total.py 2>error3.txt {$o0} {$o1} {$his_m} {$y_in_money} {$best_v3_day} {$best_v3_month} {$best_v3_year}",$out,$ret);
+  exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/historical_m_total.py 2>error3.txt {$o0} {$o1} {$his_m} {$y_in_money} {$best_v3_day} {$best_v3_month} {$best_v3_year}",$out,$ret);
   $his_reward = explode(" ",$out[0]);//歷年報酬率
   $his_analy = explode(" ",$out[1]);
   $his_analy_fmoney = explode(" ",$out[2]);
   $his_analy_inmoney = explode(" ",$out[3]);
   $his_event = explode(" ",$out[4]);
 
-
-  // $his_money = explode(" ",$out[1]);
-  // $his_reward = explode(" ",$out[4]);//歷年報酬率
-  // $his_y=ceil(count($his_reward)/12);
-  
   //月份陣列 歷史
-  // $now_y = date("Y");//2020
   if( $his_m >= 12)
   {
     $now_y = $best_v3_year+1;
@@ -284,9 +249,7 @@ $total_money1 = implode(",",$total_money);
     $start_y -=1 ;
   }
       
-  // $yy = array( 0=>(string)$start_y.'.'.(string)$start_m );//2010/7
   $yy = array( 0=>(string)($start_y*100+$start_m) );
-  // $yy = array(0=>0);//2010/7
   
   $ccc=1;
   $yyy=$start_y;
@@ -299,17 +262,7 @@ $total_money1 = implode(",",$total_money);
       else{
           $mmm++;
       }
-      // if($mmm>=10){
-      //     $yy[$ccc] = (string)(number_format($yyy+$mmm/100,2,'.',''));
-      //     // $yy[$ccc] = (string)(number_format((float)( (string)$yyy.'.'.(string)$mmm ),2));
-      // }
-      // else{
-      //     // $yy[$ccc] = (string)$yyy.'.'.(string)$mmm;
-      //     $yy[$ccc] = (string)($yyy+$mmm/100);
-          
-      // }
       $yy[$ccc] = (string)($yyy*100+$mmm);
-      // $yy[$ccc] = $ccc;
       $ccc++;
   }
   
@@ -325,14 +278,11 @@ $total_money1 = implode(",",$total_money);
   
   //資產總額2陣列 歷史回測
   $his_total_money = array(0=>0);
-  //$total_money[1] = $in_money[1];
   for ( $i=1 ; $i<$his_m ; $i++ ){
       // $his_total_money[$i] = (pow((double)$reward/100+1,$i)-1) * $y_in_money / ((double)$reward/100);
-      
       $his_total_money[$i] = $his_total_money[$i-1]*((double)$his_reward[$i-1]+1) + $y_in_money/12;
       $his_total_money[$i] = round($his_total_money[$i],2);
   }
-  // $his_total_money1 = implode(",",$his_money);
   $his_total_money1 = implode(",",$his_total_money);
 
 
@@ -371,20 +321,17 @@ $count_stockstock = 0;
 $stockstock_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
-    // $sql = "select * from 性質表 where name = '"+$var[$i] +"'";
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
     // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     if($row[14]=='STOCK'){
     // if(preg_match("/股/",$row[3] ) and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
         $count_percent_stockstock += $wght;
         $stockstock[$count_stockstock] = $row[0];
         $stockstock_percent[$count_stockstock] = $wght;
         $stockstock_name[$count_stockstock++] = $row[1];
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
     }
 
 }
@@ -396,20 +343,16 @@ $count_stock = 0;
 $stock_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
-    // $sql = "select * from 性質表 where name = '"+$var[$i] +"'";
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-    // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     // if($row[3]=='股票型'){
     if(preg_match("/股/",$row[3] ) and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
         $count_percent_stock += $wght;
         $stock[$count_stock] = $row[0];
         $stock_percent[$count_stock] = $wght;
         $stock_name[$count_stock++] = $row[1];
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
     }
 
 }
@@ -423,14 +366,11 @@ $bond_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-    // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     //if($row[3]=='債券型'){
     if(preg_match("/債/",$row[3] )and ($row[14]=='ETF') ){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
         $count_percent_bond += $wght;
         $bond[$count_bond] = $row[0];
         $bond_percent[$count_bond] = $wght;
@@ -448,14 +388,11 @@ $other_percent = array(0=>0);
 for ( $i=0 ; $i<$n ; $i++ ){
     mysqli_query($conn,"SET NAMES 'utf8'");
     $sql = "SELECT * FROM $usertable where name = '".$var[$i] ."'";
-    // echo $sql;
     $result = mysqli_query($conn,$sql);
     $row = mysqli_fetch_array($result);
     //if($row[3]=='債券型'){
     if(!(preg_match("/債/",$row[3] )) and !(preg_match("/股/",$row[3] )) and ($row[14]=='ETF')){
-        // $weight[$i] = round($weight[$i],5);
         $wght = $weight[$i]*100;
-        //echo ("$row[0] \t\t $row[1] <div style='float:right;'> $wght %</div><br>");
         $count_percent_other += $wght;
         $other[$count_other] = $row[0];
         $other_percent[$count_other] = $wght;
@@ -467,27 +404,18 @@ for ( $i=0 ; $i<$n ; $i++ ){
 
 
 unset($out);
-exec("C:/Python38-32/python.exe functions/risk_analysis.py 2>error5.txt {$o0} {$o1} {$best_v3_day} {$best_v3_month} {$best_v3_year}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/risk_analysis.py 2>error5.txt {$o0} {$o1} {$best_v3_day} {$best_v3_month} {$best_v3_year}",$out,$ret);
 $mdds = explode(" ",$out[0]);
 $stddevs = explode(" ",$out[1]);
 $sharpes = explode(" ",$out[2]);
 $stddevs2 = explode(" ",$out[3]);
-
-// unset($out);
-// exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe historical_analysis_event.py 2>error3.txt {$o0} {$o1} {$y_in_money}",$out,$ret);
-// $his_analy = explode(" ",$out[0]);
-// $his_analy_fmoney = explode(" ",$out[1]);
-// $his_analy_inmoney = explode(" ",$out[2]);
-// $his_event = explode(" ",$out[3]);
-
-
 
 ?>
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style = "background: 	#2E8B57;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="http://localhost/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost/mypage/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -587,32 +515,6 @@ $stddevs2 = explode(" ",$out[3]);
               </div>
             </div>
 
-            <!-- Earnings (Monthly) Card Example
-            <div class="col-xl-3 col-md-6 mb-4">
-              <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                  <div class="row no-gutters align-items-center">
-                    <div class="col mr-2">
-                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">expect reward</div>
-                      <div class="row no-gutters align-items-center">
-                        <div class="col-auto">
-                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">$<?php echo number_format($expect);?></div>
-                        </div>
-                        <div class="col">
-                          <div class="progress progress-sm mr-2">
-                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-auto">
-                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-
             <!-- Pending Requests Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
               <div class="card border-left-warning shadow h-100 py-2">
@@ -694,20 +596,6 @@ $stddevs2 = explode(" ",$out[3]);
                             </div>
                             <div class="col-lg-3">
                                 <div class="card text-center" height="100%">
-                                    
-                                    <!-- <div class="m-t-10">
-                                        <p>Customer Feedback</p>
-                                        <h5>385749</h5>
-                                    </div> -->
-                                    <!-- <div class="widget-card-circle pr m-t-20 m-b-20" id="info-circle-card"> -->
-                                      
-                                        <!-- <div id="pieChartdiv" style="width: 100%; height: 395px">
-                                            <div class="chartjs-wrapper"><canvas id="chartjs-4" class="chartjs" width="100%" height="130px"></canvas>
-                                            <script>new Chart(document.getElementById("chartjs-4"),
-                                            {"type":"doughnut","data":{"labels":["股票型","債券型"],
-                                            "datasets":[{"label":"My First Dataset","data":[<?php print_r($count_percent_stock);?>,<?php print_r($count_percent_bond);?>],
-                                            "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235)"]}]}});</script></div>
-                                        </div> -->
                                         <div id="pieChartdiv" style="width: 100%; height: 395px">
                                             <div class="chartjs-wrapper"><canvas id="chartjs-4" class="chartjs" width="100%" height="130px"></canvas>
                                             <script>new Chart(document.getElementById("chartjs-4"),
@@ -715,34 +603,29 @@ $stddevs2 = explode(" ",$out[3]);
                                             "datasets":[{"label":"My First Dataset","data":[<?php print_r($count_percent_stockstock);?>,<?php print_r($count_percent_stock);?>,<?php print_r($count_percent_bond);?>,<?php print_r($count_percent_other);?>],
                                             "backgroundColor":["rgb(255, 99, 132)","rgb(54, 162, 235),","rgb(255, 222, 132)","rgb(158, 99, 132)"]}]}});</script></div>
                                         </div>
-                                        <!-- <i class="ti-control-shuffle pa"></i> -->
-                                    <!-- </div> -->
                                     <br>
                                     <p class="lead">年化報酬率<?php print_r($reward);?></p>
                                     <br>
                                     <p class="lead">年化標準差<?php print_r($std_dev);?></p>
-                                    <br>
-                                    <!-- <div>
-                                    <ul class="widget-line-list m-b-15" style="list-style-type:none">
-                                        <li>年化報酬率<?php print_r($reward);?></li>
-                                        <li>年化標準差<?php print_r($std_dev);?></li>
-                                    </ul>
-                                    </div> -->
-                                    
+                                    <br>                                    
                             </div>
                             <br>
                             <div class="col-lg-12">
                               <div class="panel-group" id="accordion">
                                 <div class="card text-center">
                                   
-                                      <div class="panel panel-default">
+                                      <div class="panel panel-default" id="headingOne">
                                           <div class="panel-heading">
                                               <h4 class="panel-title">
+                                              <!-- <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                                    投資組合風險程度
+                                                  </button> -->
                                                   <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"  aria-controls="collapseOne">
                                                   投資組合風險程度
                                                   </a>
                                               </h4>
                                           </div>
+                                          <!-- <div id="collapseOne" class="collapse" aria-labelledby="headingOne"> -->
                                           <div id="collapseOne" class="panel-collapse collapse in">
                                               <div class="panel-body">
                                                 投資組合風險程度為
@@ -764,19 +647,6 @@ $stddevs2 = explode(" ",$out[3]);
                                   </div>  
                                 </div>     
                                 </div>
-                                <!-- <div class="card nestable-cart">
-                                    <div class="card-title">
-                                        <h4>USA</h4>
-                                        <div class="card-title-right-icon">
-                                            <ul>
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="Vector-map-js">
-                                        <div id="vmap13" class="vmap"></div>
-                                    </div>
-                                </div> -->
                                 <!-- /# card -->
                             </div>
                             <!-- /# column -->
@@ -803,14 +673,9 @@ $stddevs2 = explode(" ",$out[3]);
                                                         <?php
                                                             $count_percent = 0;
                                                             for ( $i=0 ; $i<$count_stock ; $i++ ){
-                                                                // echo ("$stock[$i] \t\t $stock_name[$i] <div style='float:right;'> $stock_percent[$i] %</div><br>");
                                                                 echo("<tr> <td>$stock[$i]</td> <td> $stock_name[$i]</td> <td>$stock_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
                                                     </tr>
                                                     
                                                 </tbody>
@@ -827,16 +692,11 @@ $stddevs2 = explode(" ",$out[3]);
                                                 <tbody>
                                                     <tr>
                                                         <?php
-                                                            // $count_percent = 0;
+                                                            
                                                             for ( $i=0 ; $i<$count_bond ; $i++ ){
-                                                                // echo ("$stock[$i] \t\t $stock_name[$i] <div style='float:right;'> $stock_percent[$i] %</div><br>");
                                                                 echo("<tr> <td>$bond[$i]</td> <td> $bond_name[$i]</td> <td>$bond_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
-                                                        
                                                     </tr>
                                                     
                                                 </tbody>
@@ -853,15 +713,11 @@ $stddevs2 = explode(" ",$out[3]);
                                                 <tbody>
                                                     <tr>
                                                         <?php
-                                                            // $count_percent = 0;
+                                                            
                                                             for ( $i=0 ; $i<$count_other ; $i++ ){
-                                                                // echo ("$stock[$i] \t\t $stock_name[$i] <div style='float:right;'> $stock_percent[$i] %</div><br>");
                                                                 echo("<tr> <td>$other[$i]</td> <td> $other_name[$i]</td> <td>$other_percent[$i]%</td> </tr>");
                                                             }
                                                         ?>
-                                                        <!-- <td><span>VTI</span></td>
-                                                        <td><span>Vanguard整體股市ETF</span></td>
-                                                        <td><span>25%</span></td> -->
                                                         
                                                     </tr>
                                                     
@@ -930,30 +786,8 @@ $stddevs2 = explode(" ",$out[3]);
                                                         "options":{}});
                                         </script>
                                     </div>
-                                    <!-- <div class="chartjs-wrapper"><canvas id="chartjs-2" class="chartjs" width="undefined" height="undefined"></canvas>
-                                        <script>new Chart(document.getElementById("chartjs-2"),
-                                            {"type":"line",
-                                            "data":{"labels":<?php echo "[ $yy1 ]"; ?>,
-                                            "datasets":
-                                            [{"label":"標準差","data": <?php echo "[ $std_arr ]"; ?>,"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}
-                                            
-                                                        ]},"options":{}});
-                                        </script>
-                                    </div>
-                                    <div class="chartjs-wrapper"><canvas id="chartjs-3" class="chartjs" width="undefined" height="undefined"></canvas>
-                                        <script>new Chart(document.getElementById("chartjs-3"),
-                                            {"type":"line",
-                                            "data":{"labels":<?php echo "[ $yy1 ]"; ?>,
-                                            "datasets":
-                                            [{"label":"夏普值","data": <?php echo "[ $sharpe_arr ]"; ?>,"fill":false,"borderColor":"rgb(75, 192, 192)","lineTension":0.1}
-                                                        
-                                                        ]},"options":{}});
-                                        </script>
-                                    </div> -->
                                     <br>
-                                    <!-- <div class="cpu-load-chart">
-                                        <div id="cpu-load" class="cpu-load"></div>
-                                    </div> -->
+                                    
                                     <div class="panel-group" id="accordion">
                                       <div class="panel panel-default">
                                           <div class="panel-heading">
@@ -975,42 +809,37 @@ $stddevs2 = explode(" ",$out[3]);
                                                       <?php
                                                           for($i=0;$i<5;$i++){
                                                             echo( "<td> $his_analy_inmoney[$i] </td>"   );
-                                                            // echo( "<td> 333 </td>"   );
 
                                                           }   
                                                       ?>
-                                                      <!-- <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     -->
-                                                    </tr>
+                                                      </tr>
                                                     <tr> 
                                                       <td> 資產總額 </td>
                                                       <?php
                                                           for($i=0;$i<5;$i++){
                                                             echo( "<td> $his_analy_fmoney[$i] </td>"   );
-                                                            // echo( "<td> 333 </td>"   );
+                                                            
                                                           }   
                                                       ?>
-                                                      <!-- <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     -->
-                                                    </tr>
+                                                      </tr>
                                                     <tr> 
                                                       <td> 總報酬率 </td>
                                                       <?php
                                                           for($i=0;$i<5;$i++){
                                                             echo( "<td> $his_analy[$i] </td>"   );
-                                                            // echo( "<td> 3% </td>"   );
+                                                            
                                                           }   
                                                       ?>
-                                                      <!-- <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     -->
-                                                    </tr>
+                                                      </tr>
                                                     <tr> 
                                                       <td>標準差 </td>
                                                       <?php
                                                           for($i=0;$i<5;$i++){
                                                             echo( "<td> $stddevs2[$i] </td>"   );
-                                                            // echo( "<td> 3% </td>"   );
+                                                            
                                                           }   
                                                       ?>
-                                                      <!-- <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     <td>3%</td>     -->
-                                                    </tr>
+                                                      </tr>
                                                     
                                                 </tbody>
                                             </table>
@@ -1063,9 +892,9 @@ $stddevs2 = explode(" ",$out[3]);
                                                     <tr> <th>時間長度</th> <th>最大回撤率</th>          <th>標準差</th>                      <th>夏普值</th>                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr> <td>月</td>      <td><?php echo($mdds[0]) ?></td> <td><?php echo($stddevs[0]) ?></td>  <td><?php echo($sharpes[0]) ?></td> </tr>
-                                                    <tr> <td>季</td>      <td><?php echo($mdds[1]) ?></td> <td><?php echo($stddevs[1]) ?></td>  <td><?php echo($sharpes[1]) ?></td> </tr>
-                                                    <tr> <td>年</td>      <td><?php echo($mdds[2]) ?></td> <td><?php echo($stddevs[2]) ?></td>  <td><?php echo($sharpes[2]) ?></td> </tr>
+                                                    <tr> <td>本月</td>      <td><?php echo($mdds[0]) ?></td> <td><?php echo($stddevs[0]) ?></td>  <td><?php echo($sharpes[0]) ?></td> </tr>
+                                                    <tr> <td>本季</td>      <td><?php echo($mdds[1]) ?></td> <td><?php echo($stddevs[1]) ?></td>  <td><?php echo($sharpes[1]) ?></td> </tr>
+                                                    <tr> <td>本年度</td>    <td><?php echo($mdds[2]) ?></td> <td><?php echo($stddevs[2]) ?></td>  <td><?php echo($sharpes[2]) ?></td> </tr>
                                                     <tr> <td>成立至今</td> <td><?php echo($mdds[3]) ?></td> <td><?php echo($stddevs[3]) ?></td>  <td><?php echo($sharpes[3]) ?></td> </tr>
                                                     
                                                 </tbody>

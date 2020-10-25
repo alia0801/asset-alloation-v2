@@ -46,11 +46,6 @@
           var first_input = risk*10000;
           var money = [];
 
-          // var year = 40
-          // var goal_money = 5*15*12*10000*(1.0172**40)
-          // var in_per_year =  120000
-          // var first_input = 20*10000
-
 
           for(i=0;i<(year*12+1);i++)
           {
@@ -100,10 +95,6 @@
           var money = [];
           var year = parseFloat(document.getElementById('period').value);
           var goal_money = parseFloat(document.getElementById('totalAmt').value) * 10000;
-          // var year = 40
-          // var goal_money = 5*15*12*10000*(1.0172**40)
-          // var in_per_year =  120000
-          // var first_input = 20*10000
 
           for(i=0;i<(year*12+1);i++)
           {
@@ -149,7 +140,7 @@ $password = $_POST["password"];
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style = "background: 	#2E8B57;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="http://localhost/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost/mypage/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -484,11 +475,11 @@ $password = $_POST["password"];
                                                             <input class="form-control" id="want_see" name="want_see" autocomplete="off" type="number" value="" />
                                                             <!-- <span class="unitname"> -->
                                                             <!-- <input  class="form-control" id="ymd" name="ymd" type="text" value="" /> -->
-                                                              <input type="text" class="form-control" placeholder = '年/月/日' id="ymd" name="ymd" list="category" value="">
+                                                              <input type="text" class="form-control" placeholder = '年/月' id="ymd" name="ymd" list="category" value="">
                                                               <datalist id="category">  
                                                                    <option value="年">
                                                                    <option value="月">
-                                                                   <option value="日">
+                                                                   <!-- <option value="日"> -->
                                                               </datalist>
                                                             <!-- </span> -->
                                                         </div>
@@ -499,7 +490,7 @@ $password = $_POST["password"];
                                                     </div>
                                                     
                                                 <!-- </div> -->
-                                                <p class="inputDesc">模擬按照此網站建議的投資組合下去操作輸入的天數，並顯示成果</p>
+                                                <p class="inputDesc">模擬按照此網站建議的投資組合下去操作的時間長度，並顯示成果</p>
                                                 <div class="notification error closeable" id="expectAgeMsg" style="display: none">
                                                     <p><span>Error!</span></p>
                                                     <a class="close"></a>
@@ -560,8 +551,10 @@ $password = $_POST["password"];
           <div class="row">
           <!-- <div class="col-md-6 col-lg-1">
 </div> -->
+<div class="col-xl-1 col-md-0 col-lg-1">
+      </div>
 <!-- Portfolio Item 1 -->
-<div class="col-md-6 col-lg-4">
+<div class="col-xl col-md-4 col-lg">
   <br>
 <!-- <div class="card text-center"  style = "background: #ccdcde"> -->
 <div class="card text-center" style = "background: #FFA500; padding:5px">
@@ -599,7 +592,7 @@ $password = $_POST["password"];
 </div>
 
 <!-- Portfolio Item 2 -->
-<div class="col-md-6 col-lg-4">
+<div class="col-xl col-md-4 col-lg">
 <br>
 <div class="card text-center" style = "background: #FFA500; padding:5px">
                             <div class="stat-widget-two">
@@ -631,7 +624,7 @@ $password = $_POST["password"];
 
 
 <!-- Portfolio Item 5 -->
-<div class="col-md-6 col-lg-4">
+<div class="col-xl col-md-4 col-lg">
 <br>
 <div class="card text-center" style = "background: #FFA500; padding:5px">
                             <div class="stat-widget-two">
@@ -659,15 +652,15 @@ $password = $_POST["password"];
                             </div>
                         </div>
 </div>
-
+<div class="col-xl-1 col-md-0 col-lg-1">
+      </div>
 </div>
 
 <div class="row">
-<!-- 
-<div class="col-md-6 col-lg-1">
-</div> -->
+<div class="col-xl-1 col-md-0 col-lg-1">
+      </div>
 <!-- Portfolio Item 6 -->
-<div class="col-md-6 col-lg-4">
+<div class="col-xl col-md-4 col-lg">
 <br>
 <div class="card text-center" style = "background: #FFA500; padding:5px">
                             <div class="stat-widget-two">
@@ -677,7 +670,7 @@ $password = $_POST["password"];
                                         <!-- <div class="row p-l-10 p-r-10"> -->
                                             <div class="col-xs-9">
                                                 <div class="input-group">
-                                                    <input boundaryMsg="投入金額為0~2000萬" placeholder="萬" class="form-control typeahead tt-input" id="risk2" max="2000" min="0" name="risk2" type="number" value="" />
+                                                    <input boundaryMsg="投入金額為0~2000萬" placeholder="萬元" class="form-control typeahead tt-input" id="risk2" max="2000" min="0" name="risk2" type="number" value="" />
                                                     <!-- <span class="unitname">級</span> -->
                                                 </div>
                                             </div>
@@ -698,7 +691,7 @@ $password = $_POST["password"];
                         </div>
 </div>
 
-<div class="col-md-6 col-lg-4" >
+<div class="col-xl col-md-4 col-lg" >
 <br>
 <div class="card text-center" style = "background: #FFA500; padding:5px">
                             <div class="stat-widget-two">
@@ -729,7 +722,7 @@ $password = $_POST["password"];
                         </div>
 </div>
 
-<div class="col-md-6 col-lg-4">
+<div class="col-xl col-md-4 col-lg">
 <br>
 <div class="card text-center" style = "background: #FFA500; padding:5px">
                             <div class="stat-widget-two">
@@ -742,11 +735,11 @@ $password = $_POST["password"];
                                                     <input class="form-control" id="want_see2" name="want_see2" autocomplete="off" type="number" value="" />
                                                     <!-- <span class="unitname"> -->
                                                     <!-- <input  class="form-control" id="ymd" name="ymd" type="text" value="" /> -->
-                                                      <input type="text" class="form-control" placeholder = '年/月/日' id="ymd2" name="ymd2" list="category" value="">
+                                                      <input type="text" class="form-control" placeholder = '年/月' id="ymd2" name="ymd2" list="category" value="">
                                                       <datalist id="category">  
                                                            <option value="年">
                                                            <option value="月">
-                                                           <option value="日">
+                                                           <!-- <option value="日"> -->
                                                       </datalist>
                                                     <!-- </span> -->
                                                 </div>
@@ -757,7 +750,7 @@ $password = $_POST["password"];
                                             </div>
                                             
                                         <!-- </div> -->
-                                        <p class="inputDesc">模擬按照此網站建議的投資組合下去操作輸入的天數，並顯示成果</p>
+                                        <p class="inputDesc">模擬按照此網站建議的投資組合下去操作的時間長度，並顯示成果</p>
                                         <div class="notification error closeable" id="expectAgeMsg" style="display: none">
                                             <p><span>Error!</span></p>
                                             <a class="close"></a>
@@ -768,7 +761,8 @@ $password = $_POST["password"];
                         </div>
 </div>
 <!-- Portfolio Item 4 -->
-
+<div class="col-xl-1 col-md-0 col-lg-1">
+      </div>
 </div>
 <!-- /.row -->
 

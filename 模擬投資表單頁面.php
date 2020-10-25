@@ -98,7 +98,7 @@ $password = $_POST["password"];
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style = "background: 	#2E8B57;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="http://localhost/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost/mypage/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>
@@ -407,15 +407,6 @@ $password = $_POST["password"];
                                                         <div class="input-group">
                                                             <input class="form-control" id="want_see" name="want_see" type="date" value="" />
                                                             
-                                                            <!-- <span class="unitname"> -->
-                                                            <!-- <input  class="form-control" id="ymd" name="ymd" type="text" value="" /> -->
-                                                              <!-- <input type="text" class="form-control" placeholder = '年/月/日' id="ymd" name="ymd" list="category" value="">
-                                                              <datalist id="category">  
-                                                                   <option value="年">
-                                                                   <option value="月">
-                                                                   <option value="日">
-                                                              </datalist> -->
-                                                            <!-- </span> -->
                                                         </div>
                                                         <!-- <div class="input-group">
                                                             <input boundaryMsg="建議規劃的年齡為60至100歲" placeholder="天" class="form-control typeahead tt-input" id="want_see" max="10000" min="0" name="want_see" type="number" value="" />

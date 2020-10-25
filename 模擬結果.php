@@ -140,7 +140,7 @@ $mode = 3;
 //選股 C:/Users/User/Anaconda3/python.exe
 // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe testsig1.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
 // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode}",$out,$ret);
-exec("C:/Python38-32/python.exe choose_try.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe choose_try.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
 // exec("C:/Users/User/Anaconda3/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
 
 // $_SESSION["ymd"] = $_POST["ymd"];
@@ -184,7 +184,7 @@ $need_pension = ceil($need_pension);
         
 <?php
 unset($out);
-exec("C:/Python38-32/python.exe functions/再平衡_risk_年_try.py 2>error6.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/再平衡_risk_年_try.py 2>error6.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe 無再平衡_risk2.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far}",$out,$ret);
 $date_arr = implode(",",explode(" ",$out[0]));
 $total_money_y = implode(",",explode(" ",$out[1]));
@@ -199,7 +199,7 @@ $new_y = implode(",",explode(" ",$out[$n+6]));
 
 
 unset($out);
-exec("C:/Python38-32/python.exe functions/再平衡_risk_日_try.py 2>error8.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/再平衡_risk_日_try.py 2>error8.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 $total_money_d = implode(",",explode(" ",$out[1]));
 for ( $i=0 ; $i<$n ; $i++ ){
     $ratio_d[$i] = implode(",",explode(" ",$out[$i+2]));
@@ -213,7 +213,7 @@ $new_d = implode(",",explode(" ",$out[$n+6]));
 
 
 unset($out);
-exec("C:/Python38-32/python.exe functions/無再平衡_risk2_try.py 2>error9.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/無再平衡_risk2_try.py 2>error9.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 $total_money_n = implode(",",explode(" ",$out[1]));
 for ( $i=0 ; $i<$n ; $i++ ){
     $ratio_n[$i] = implode(",",explode(" ",$out[$i+2]));
@@ -227,7 +227,7 @@ $new_n = implode(",",explode(" ",$out[$n+6]));
 
 
 unset($out);
-exec("C:/Python38-32/python.exe functions/再平衡_risk_月_try.py 2>error7.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/再平衡_risk_月_try.py 2>error7.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 // $date_arr = implode(",",explode(" ",$out[0]));
 $date_arr = implode(",",explode(" ",$out[0]));
 $total_money_m = implode(",",explode(" ",$out[1]));
@@ -248,7 +248,7 @@ $new_m = implode(",",explode(" ",$out[$n+6]));
 
 
 unset($out);
-exec("C:/Python38-32/python.exe functions/db_flush.py 2>error10.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/db_flush.py 2>error10.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 $flame_1 = $out[0];
 $flame_2 = $out[1];
 $flame_4 = $risk_m[0];
@@ -434,7 +434,7 @@ for ( $i=0 ; $i<$n ; $i++ ){
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style = "background: 	#2E8B57;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="http://localhost/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
+      <a class="navbar-brand js-scroll-trigger" href="http://localhost/mypage/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>

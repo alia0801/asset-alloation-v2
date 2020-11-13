@@ -23,7 +23,8 @@ day = ["00","01","02","03","04","05","06","07","08","09","10",
 day_of_month = [ 31,28,31, 30,31,30, 31,31,30, 31,30,31]
 
 
-today = datetime.date.today()
+# today = datetime.date.today()
+today = datetime.date(2020,9,20)
 # today = datetime.date(2010,10,3)
 
 year = sys.argv[1]

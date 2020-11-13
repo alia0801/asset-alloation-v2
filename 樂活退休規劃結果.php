@@ -222,7 +222,8 @@ $total_money1 = implode(",",$total_money);
   $o1 = implode(",",$weight);
   unset($out);
   exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/historical_m_total.py 2>error3.txt {$o0} {$o1} {$his_m} {$y_in_money} {$best_v3_day} {$best_v3_month} {$best_v3_year}",$out,$ret);
-  $his_reward = explode(" ",$out[0]);//歷年報酬率
+  // $his_reward = explode(" ",$out[0]);//歷年報酬率
+  $his_total_money = explode(" ",$out[0]);
   $his_analy = explode(" ",$out[1]);
   $his_analy_fmoney = explode(" ",$out[2]);
   $his_analy_inmoney = explode(" ",$out[3]);
@@ -267,7 +268,7 @@ $total_money1 = implode(",",$total_money);
   }
   
   $yy1 = implode(",",$yy);
-  $his_reward1 = implode(",",$his_reward);
+  // $his_reward1 = implode(",",$his_reward);
   
   //累計投入金額陣列 歷史
   $in_money2 = array(0=>0);
@@ -277,12 +278,12 @@ $total_money1 = implode(",",$total_money);
   $in_money3 = implode(",",$in_money2);
   
   //資產總額2陣列 歷史回測
-  $his_total_money = array(0=>0);
-  for ( $i=1 ; $i<$his_m ; $i++ ){
-      // $his_total_money[$i] = (pow((double)$reward/100+1,$i)-1) * $y_in_money / ((double)$reward/100);
-      $his_total_money[$i] = $his_total_money[$i-1]*((double)$his_reward[$i-1]+1) + $y_in_money/12;
-      $his_total_money[$i] = round($his_total_money[$i],2);
-  }
+  // $his_total_money = array(0=>0);
+  // for ( $i=1 ; $i<$his_m ; $i++ ){
+  //     // $his_total_money[$i] = (pow((double)$reward/100+1,$i)-1) * $y_in_money / ((double)$reward/100);
+  //     $his_total_money[$i] = $his_total_money[$i-1]*((double)$his_reward[$i-1]+1) + $y_in_money/12;
+  //     $his_total_money[$i] = round($his_total_money[$i],2);
+  // }
   $his_total_money1 = implode(",",$his_total_money);
 
 
@@ -415,7 +416,7 @@ $stddevs2 = explode(" ",$out[3]);
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav" style = "background: 	#2E8B57;">
     <div class="container">
-      <a class="navbar-brand js-scroll-trigger" href="http://localhost/mypage/asset-allocation-pages/start-pages/start.php">DA DA 智能理財</a>
+      <a class="navbar-brand js-scroll-trigger" href="start-pages/start.php">DA DA 智能理財</a>
       <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         Menu
         <i class="fas fa-bars"></i>

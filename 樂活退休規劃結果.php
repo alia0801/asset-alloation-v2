@@ -170,32 +170,45 @@ for ( $i=1 ; $i<$years ; $i++ ){
 $y1 = implode(",",$y);
 
 //累計投入金額陣列
-$in_money = array(0=>0);
+$in_money = array(0=>$first_input*10000);
 for ( $i=1 ; $i<$years ; $i++ ){
-    $in_money[$i] = ($i-1)*$y_in_money+$first_input*10000;
+    $in_money[$i] = ($i)*$y_in_money+$first_input*10000;
 }
 $in_money1 = implode(",",$in_money);
 
 //資產總額陣列
-$total_money = array(0=>0);
-for ( $i=1 ; $i<$years ; $i++ ){
-  if($i==1){
-    $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $first_input*10000;
-    // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
-    $total_money[$i] = round($total_money[$i]);
-  }
-  else{
-    $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $y_in_money;
-    // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
-    $total_money[$i] = round($total_money[$i]);
-  }
+// $total_money = array(0=>0);
+// for ( $i=1 ; $i<$years ; $i++ ){
+//   if($i==1){
+//     $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $first_input*10000;
+//     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
+//     $total_money[$i] = round($total_money[$i]);
+//   }
+//   else{
+//     $total_money[$i] = $total_money[$i-1]*((double)$reward/100+1) + $y_in_money;
+//     // $total_money[$i] = $total_money[$i-1]*((double)$nodiv_r+1)*((double)$div/100+1) + $y_in_money;
+//     $total_money[$i] = round($total_money[$i]);
+//   }
     
+// }
+// $total_money[count($total_money)-2] = $total_money[count($total_money)-2] + 1058722;
+// $total_money[count($total_money)-1] = $need_pension + 38722;
+
+$total_money = array(0=>$first_input*10000);
+$temp_arr = array(0=>$first_input*10000);
+$rrr = (double)$reward/100/12;
+$in_per_month = $y_in_money/12;
+$count_len=0;
+for ( $i=1 ; $i<$years*12+1 ; $i++ ){
+  $temp = $temp_arr[count($temp_arr)-1]*(1+$rrr)+$in_per_month;
+  $temp_arr[$i] = $temp;
+  if ($i%12==0){
+    $count_len++;
+    $total_money[$count_len] = round($temp);
+  }
+      
 }
-$total_money[count($total_money)-2] = $total_money[count($total_money)-2] + 1058722;
-$total_money[count($total_money)-1] = $need_pension + 38722;
-$total_money1 = implode(",",$total_money);
-
-
+$total_money1 = implode(",",$total_money);   
 
   if (strcmp( $_SESSION["ymd"], '年' ) == 0){//歷史回測單位為年，轉為月
     $want_see_type = 1;

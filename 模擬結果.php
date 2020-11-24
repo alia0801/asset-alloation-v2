@@ -140,7 +140,7 @@ $mode = 3;
 //選股 C:/Users/User/Anaconda3/python.exe
 // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe testsig1.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
 // exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode}",$out,$ret);
-exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe choose_try.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
+exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/choose_try.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money} {$mode} {$first_input} {$want_see_far} {$sqlyourname} {$sqlpassword}",$out,$ret);
 // exec("C:/Users/User/Anaconda3/python.exe new_choose5.py 2>error.txt {$yyyy} {$need_pension} {$y_in_money}",$out,$ret);
 
 // $_SESSION["ymd"] = $_POST["ymd"];
@@ -214,6 +214,7 @@ $new_d = implode(",",explode(" ",$out[$n+6]));
 
 unset($out);
 exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/無再平衡_risk2_try.py 2>error9.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
+$date_arr = implode(",",explode(" ",$out[0]));
 $total_money_n = implode(",",explode(" ",$out[1]));
 for ( $i=0 ; $i<$n ; $i++ ){
     $ratio_n[$i] = implode(",",explode(" ",$out[$i+2]));
@@ -229,7 +230,7 @@ $new_n = implode(",",explode(" ",$out[$n+6]));
 unset($out);
 exec("C:/Users/Alia/AppData/Local/Programs/Python/Python37/python.exe functions/再平衡_risk_月_try.py 2>error7.txt {$sqlyourname} {$sqlpassword}",$out,$ret);
 // $date_arr = implode(",",explode(" ",$out[0]));
-$date_arr = implode(",",explode(" ",$out[0]));
+
 $total_money_m = implode(",",explode(" ",$out[1]));
 for ( $i=0 ; $i<$n ; $i++ ){
     $ratio_m[$i] = implode(",",explode(" ",$out[$i+2]));

@@ -93,7 +93,7 @@
   <script type="text/javascript">
     function check()
     {
-        document.info.action="http://localhost/mypage/asset-allocation-pages/%E6%9F%A5%E8%A9%A2%E7%B5%90%E6%9E%9C.php";
+        document.info.action="../%E6%9F%A5%E8%A9%A2%E7%B5%90%E6%9E%9C.php";
         document.info.submit();
     }
 
